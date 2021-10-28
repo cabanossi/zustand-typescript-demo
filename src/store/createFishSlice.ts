@@ -1,4 +1,4 @@
-import { GetState, SetState } from "zustand";
+import { GetState, SetState, StateCreator, StoreApi } from "zustand";
 import { MyState } from "./useStore";
 
 export interface FishSlice {
@@ -6,9 +6,11 @@ export interface FishSlice {
   repopulate: () => void;
 }
 
+type StateSlice<T extends object> = StateCreator<T>;
+
 const maxFishes = 10;
 
-const createFishSlice = (set: SetState<MyState>, get: GetState<MyState>) => ({
+const createFishSlice: StateSlice<FishSlice> = (set, get, api): FishSlice => ({
   fishes: maxFishes,
   repopulate: () => {
     set((prev) => ({ fishes: maxFishes }));
