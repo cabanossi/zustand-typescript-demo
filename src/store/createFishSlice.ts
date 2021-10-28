@@ -1,12 +1,12 @@
-import { GetState, SetState, StateCreator, StoreApi } from "zustand";
-import { MyState } from "./useStore";
+import { StateCreator, StoreApi } from "zustand";
+//import { MyState } from "./useStore";
 
 export interface FishSlice {
   fishes: number;
   repopulate: () => void;
 }
 
-type StateSlice<T extends object> = StateCreator<T>;
+type StateSlice<T extends object> = StateCreator<T> | StoreApi<T>;
 
 const maxFishes = 10;
 
