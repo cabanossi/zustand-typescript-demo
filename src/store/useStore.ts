@@ -10,8 +10,9 @@ export type SliceStateCreator<
   CustomSetState = SetState<T>
 > = (set: CustomSetState, get: GetState<T>, api: StoreApi<T>) => S;
 
-interface ICommon extends BearCommon, FishCommon {}
-interface IStore extends ICommon, BearSlice, FishSlice {}
+//interface ICommon extends BearCommon, FishCommon {}
+//interface IStore extends ICommon, BearSlice, FishSlice {}
+interface IStore extends BearSlice, FishSlice {}
 
 const useStore = create<IStore>(
   (set, get, api): IStore => ({
