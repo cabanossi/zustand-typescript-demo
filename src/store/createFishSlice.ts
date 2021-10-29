@@ -1,19 +1,30 @@
-import { StateCreator, StoreApi } from "zustand";
-//import { MyState } from "./useStore";
+import { TAppetite } from "./createBearSlice";
+import { SliceStateCreator } from "./useStore";
+
+export interface FishCommon {
+  appetite: TAppetite;
+}
 
 export interface FishSlice {
   fishes: number;
   repopulate: () => void;
 }
 
-type StateSlice<T extends object> = StateCreator<T> | StoreApi<T>;
-
 const maxFishes = 10;
 
-const createFishSlice: StateSlice<FishSlice> = (set, get, api): FishSlice => ({
+const createFishSlice: SliceStateCreator<FishSlice, FishCommon> = (
+  set,
+  get,
+  api
+): FishSlice => ({
   fishes: maxFishes,
   repopulate: () => {
-    set((prev) => ({ fishes: maxFishes }));
+    if (get().appetite === "sated") {
+      set((prev) => ({ fishes: maxFishes }));
+    } else {
+      set((prev) => ({ fishes: prev.fishes + 5 }));
+    }
+    set({ appetite: "hungry" });
   }
 });
 
