@@ -22,7 +22,7 @@ const createFishSlice: SliceStateCreator<FishSlice, FishCommon> = (
     if (get().appetite === "sated") {
       set((prev) => ({ fishes: maxFishes }));
     } else {
-      set((prev) => ({ fishes: prev.fishes + 5 }));
+      set((prev) => ({ fishes: prev.fishes + 2 }));
     }
     set({ appetite: "hungry" });
   }

@@ -18,7 +18,9 @@ export default function Mountain() {
         <button onClick={eatTwoFish}>Eat two</button>
       </p>
       <p>
-        <button onClick={repopulate}>Repopulate</button>
+        <button onClick={repopulate}>
+          Repopulate ({appetite === "sated" ? 10 : 2})
+        </button>
       </p>
     </div>
   );
